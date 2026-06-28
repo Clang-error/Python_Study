@@ -16,7 +16,11 @@ class Fourcal:
         result= self.first - self.second
         return result
     def div(self):
-        result = self.first / self.second
+        try:
+            result = self.first / self.second
+        except(ZeroDivisionError):
+            print("0입니다잉")
+            result = 0
         return result
 
 class morefourcal(Fourcal):
@@ -24,9 +28,18 @@ class morefourcal(Fourcal):
         result = self.first ** self.second
         return result
 
-a = morefourcal(4,2)
-
+class SafeFourcal(Fourcal):
+    def div(self):
+        if self.second == 0:
+            return 0
+        else:
+            return self.first / self.second
+a = morefourcal(4,0)
+b = SafeFourcal(4,0)
 print(a.pow())
+print(a.div())
+print(b.add())
+print(b.div())
 
 
 # print(a.add())
